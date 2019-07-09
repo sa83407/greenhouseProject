@@ -18,3 +18,8 @@ temperature and humidity sensors are used to collect data. Ten OLED displays are
 
 ## Data displayed for selected Greenhouse:
 ![s3](https://i.ibb.co/0FmJX4m/s3.png)
+
+## Data displayed on monitor
+![data display on monitor](https://i.ibb.co/cL7Q4Zv/processing-display.png)
+
+
