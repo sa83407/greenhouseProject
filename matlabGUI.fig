@@ -1,0 +1,587 @@
+
+function varargout = tempGUI(varargin)
+% TEMPGUI MATLAB code for tempGUI.fig
+%      TEMPGUI, by itself, creates a new TEMPGUI or raises the existing
+%      singleton*.
+%
+%      H = TEMPGUI returns the handle to a new TEMPGUI or the handle to
+%      the existing singleton*.
+%
+%      TEMPGUI('CALLBACK',hObject,eventData,handles,...) calls the local
+%      function named CALLBACK in TEMPGUI.M with the given input arguments.
+%
+%      TEMPGUI('Property','Value',...) creates a new TEMPGUI or raises the
+
+%      existing singleton*.  Starting from the left, property value pairs are
+%      applied to the GUI before tempGUI_OpeningFcn gets called.  An
+%      unrecognized property name or invalid value makes property application
+%      stop.  All inputs are passed to tempGUI_OpeningFcn via varargin.
+%
+%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
+%      instance to run (singleton)".
+%
+% See also: GUIDE, GUIDATA, GUIHANDLES
+
+% Edit the above text to modify the response to help tempGUI
+
+% Last Modified by GUIDE v2.5 04-May-2019 11:32:18
+
+% Begin initialization code - DO NOT EDIT
+gui_Singleton = 1;
+gui_State = struct('gui_Name',       mfilename, ...
+                   'gui_Singleton',  gui_Singleton, ...
+                   'gui_OpeningFcn', @tempGUI_OpeningFcn, ...
+                   'gui_OutputFcn',  @tempGUI_OutputFcn, ...
+                   'gui_LayoutFcn',  [] , ...
+                   'gui_Callback',   []);
+if nargin && ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+    cla reset
+        txt = {'Select GH'};
+        text(0.3,0.6,txt,'FontSize',26)
+end
+
+if nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+else
+    gui_mainfcn(gui_State, varargin{:});
+end
+
+% End initialization code - DO NOT EDIT
+
+
+
+
+% --- Executes just before tempGUI is made visible.
+function tempGUI_OpeningFcn(hObject, eventdata, handles, varargin)
+% This function has no output args, see OutputFcn.
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% varargin   command line arguments to tempGUI (see VARARGIN)
+    %% open text file, save data to array
+
+        %% open text file, save data to array
+
+
+%% split data (gui w/ drop down window selection is better)
+
+guidata(hObject,handles)
+% Choose default command line output for tempGUI
+handles.output = hObject;
+
+% Update handles structure
+guidata(hObject, handles);
+
+% UIWAIT makes tempGUI wait for user response (see UIRESUME)
+% uiwait(handles.figure1);
+
+
+% --- Outputs from this function are returned to the command line.
+function varargout = tempGUI_OutputFcn(hObject, eventdata, handles)
+% varargout  cell array for returning output args (see VARARGOUT);
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Get default command line output from handles structure
+varargout{1} = handles.output;
+
+
+% --- Executes on selection change in popupmenu1.
+function popupmenu1_Callback(hObject, eventdata, handles)
+% hObject    handle to popupmenu1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu1 contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from popupmenu1
+
+    fileID = fopen('050319.txt','r');
+    formatSpec = '%d';
+    b=fscanf(fileID,formatSpec);
+    fclose(fileID);
+    handles.b=b;
+
+
+
+gh1=b(1:20:end,1);
+handles.gh1 = gh1;
+maxTemp=max(max(gh1));
+roundT=round(maxTemp);
+handles.roundT=roundT;
+handles.maxTemp=maxTemp;
+strgh1=mat2str(roundT);
+handles.strgh1=strgh1;
+
+lowTemp=min(gh1);
+roundT=round(lowTemp);
+handles.roundT=roundT;
+handles.lowTemp=lowTemp;
+strgh1l=mat2str(roundT);
+handles.strgh1l=strgh1l;
+
+textLabel = sprintf(strgh1, strgh1);
+set(handles.text3, 'String', textLabel);
+textLabel = sprintf(strgh1l, strgh1l);
+set(handles.text4, 'String', textLabel);
+
+plot(handles.gh1)
+
+str2 = get(hObject, 'String');
+val = get(hObject, 'Value');
+% example column vector with data (Rx1 matrix)
+
+
+gh1=b(1:20:end,1);
+gh2=b(2:20:end,1);
+gh3=b(3:20:end,1);
+gh4=b(4:20:end,1);
+lh=b(5:20:end,1);
+iso1=b(6:20:end,1);
+iso2=b(7:20:end,1);
+iso3=b(8:20:end,1);
+iso4=b(9:20:end,1);
+hh=b(10:20:end,1);
+gh1h=b(11:20:end,1);
+gh2h=b(12:20:end,1);
+gh3h=b(13:20:end,1);
+gh4h=b(14:20:end,1);
+lhh=b(15:20:end,1);
+iso1h=b(16:20:end,1);
+iso2h=b(17:20:end,1);
+iso3h=b(18:20:end,1);
+iso4h=b(19:20:end,1);
+hhh=b(20:20:end,1);
+handles.gh1 = gh1;
+handles.gh2 = gh2;
+handles.gh3 = gh3;
+handles.gh4 = gh4;
+handles.lh = lh;
+handles.iso1 = iso1;
+handles.iso2 = iso2;
+handles.iso3 = iso3;
+
+handles.iso4 = iso4;
+handles.hh = hh;
+handles.gh1h=gh1h;
+handles.gh2h = gh2h;
+handles.gh3h = gh3h;
+handles.gh4h = gh4h;
+handles.lhh = lhh;
+handles.iso1h = iso1h;
+handles.iso2h = iso2h;
+handles.iso3h = iso3h;
+handles.iso4h = iso4h;
+handles.hhh = hhh;
+
+switch str2{val}
+    case 'Select GH'
+        cla reset
+        txt = {'Select GH'};
+        text(0.3,0.6,txt,'FontSize',26)
+    case 'GH1'
+        maxTemp=max(max(gh1));
+        roundgh1=round(maxTemp);
+        handles.roundgh1=roundgh1;
+        handles.maxTemp=maxTemp;
+        strgh1=mat2str(roundgh1);
+        handles.strgh1=strgh1;
+
+        lowTemp=min(gh1);
+        roundgh1=round(lowTemp);
+        handles.roundgh1=roundgh1;
+        handles.lowTemp=lowTemp;
+        strg
+
+h1l=mat2str(roundgh1);
+        handles.strgh1l=strgh1l;
+
+        textLabel = sprintf(strgh1, strgh1);
+        set(handles.text3, 'String', textLabel);
+        textLabel = sprintf(strgh1l, strgh1l);
+        set(handles.text4, 'String', textLabel);
+
+        hold off
+        plot(handles.gh1,'-o')
+        hold on
+        plot(handles.gh1h,'-o')
+        legend('Temperature(F)','Humidity(%)')
+        %xticks([])
+        %ylim([40 110])
+        grid on
+        %grid minor
+        xticks([1 5 9 13 17 21 25 29 33 37 41 45 49 53 57 61 65 69 73 77 81 85 89 93 97])
+        xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','0'})
+        %xlabel('0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23')
+        %ylabel('Temperature(F)/Humidity(%)')
+    case 'GH2'
+        maxTemp=max(max(gh2));
+        roundT=round(maxTemp);
+        handles.roundT=roundT;
+        handles.maxTemp=maxTemp;
+        strgh2=mat2str(roundT);
+        handles.strgh2=strgh2;
+
+        lowTemp=min(gh2);
+        roundT=round(lowTemp);
+        handles.roundT=roundT;
+        handles.lowTemp=lowTemp;
+        strgh2l=mat2str(roundT);
+        handles.strgh2l=strgh2l;
+
+        textLabel = sprintf(strgh2, strgh2);
+        set(handles.text3, 'String', textLabel);
+        textLabel = sprintf(strgh2l, strgh2l);
+        set(handles.text4, 'String', textLabel);
+
+        hold off
+        plot(handles.gh2,'-o')
+        hold on
+        plot(handles.gh2h,'-o')
+        legend('Temperature(F)','Humidity(%)')
+       %xticks([])
+       grid on
+        xticks([1 5 9 13 17 21 25 29 33 37 41 45 49 53 57 61 65 69 73 77 81 85 89 93 97])
+        xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','0'})
+        %ylim([40 110])
+        %xlabel('0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23')
+    case 'GH3'
+        maxTemp=max(max(gh3));
+        roundT=round(maxTemp);
+        handles.roundT=roundT;
+        handles.maxTemp=maxTemp;
+        strgh3=mat2str(roundT);
+        handles.strgh3=strgh3;
+
+        lowTemp=min(gh3);
+        roundT=round(lowTemp);
+        handles.roundT=roundT;
+        handles.lowTemp=lowTemp;
+        strgh3l=mat2str(roundT);
+        handles.strgh3l=strgh3l;
+        
+        textLabel = sprintf(strgh3, strgh3);
+        set(handles.text3, 'String', textLabel);
+        textLabel = sprintf(strgh3l, strgh3l);
+        set(handles.text4, 'String', textLabel);
+
+        hold off
+        plot(handles.gh3,'-o')
+        hold on
+        plot(handles.gh3h,'-o')
+        legend('Temperature(F)','Humidity(%)')
+        %xticks([])
+        grid on
+         xticks([1 5 9 13 17 21 25 29 33 37 41 45 49 53 57 61 65 69 73 77 81 85 89 93 97])
+        xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','0'})
+        %ylim([40 110])
+        %xlabel('0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23')
+    case 'GH4'
+        maxTemp=max(max(gh4));
+        roundT=round(maxTemp);
+        handles.roundT=roundT;
+        handles.maxTemp=maxTemp;
+        strgh4=mat2str(roundT);
+        handles.strgh4=strgh4;
+
+        lowTemp=min(gh4);
+        roundT=round(lowTemp);
+        handles.roundT=roundT;
+        handles.lowTemp=lowTemp;
+        strgh4l=mat2str(roundT);
+        handles.strgh4l=strgh4l;
+     
+        textLabel = sprintf(strgh4, strgh4);
+        set(handles.text3, 'String', textLabel);
+        textLabel = sprintf(strgh4l, strgh4l);
+        set(handles.text4, 'String', textLabel);
+
+        hold off
+        plot(handles.gh4)
+        hold on
+        plot(handles.gh4h)
+        legend('Temperature(F)','Humidity(%)')
+        %xticks([])
+        grid on
+         xticks([1 5 9 13 17 21 25 29 33 37 41 45 49 53 57 61 65 69 73 77 81 85 89 93 97])
+        xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','0'})
+        %ylim([40 110])
+        %xlabel('0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23')
+    case 'LH'
+        maxTemp=max(max(lh));
+        roundT=round(maxTemp);
+        handles.roundT=roundT;
+        handles.maxTemp=maxTemp;
+        strlh=mat2str(roundT);
+        handles.strlh=strlh;
+
+        lowTemp=min(lh);
+        roundT=round(lowTemp);
+        handles.roundT=roundT;
+        handles.lowTemp=lowTemp;
+        strlhl=mat2str(roundT);
+        handles.strlhl=strlhl;
+        
+        textLabel = sprintf(strlh,strlh);
+        set(handles.text3, 'String', textLabel);
+        textLabel = sprintf(strlhl,strlhl);
+        set(handles.text4, 'String', textLabel);
+
+        hold off
+        plot(handles.lh)
+        hold on
+        plot(handles.lhh)
+        legend('Temperature(F)','Humidity(%)')
+        %xticks([])
+        grid on
+         xticks([1 5 9 13 17 21 25 29 33 37 41 45 49 53 57 61 65 69 73 77 81 85 89 93 97])
+        xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','0'})
+        %ylim([40 110])
+        %xlabel('0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23')
+    case 'ISO1'
+        maxTemp=max(max(iso1));
+        roundT=round(maxTemp);
+        handles.roundT=roundT;
+        handles.maxTemp=maxTemp;
+        striso1=mat2str(roundT);
+        handles.striso1=striso1;
+
+        lowTemp=min(iso1);
+        roundT=round(lowTemp);
+        handles.roundT=roundT;
+        handles.lowTemp=lowTemp;
+        striso1l=mat2str(roundT);
+        handles.striso1l=striso1l;
+        
+        textLabel = sprintf(striso1, striso1);
+        set(handles.text3, 'String', textLabel);
+        textLabel = sprintf(striso1l, striso1l);
+        set(handles.text4, 'String', textLabel);
+
+        hold off
+        plot(handles.iso1)
+        hold on
+        plot(handles.iso1h)
+        legend('Temperature(F)','Humidity(%)')
+        %xticks([])
+        grid on
+         xticks([1 5 9 13 17 21 25 29 33 37 41 45 49 53 57 61 65 69 73 77 81 85 89 93 97])
+        xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','0'})
+        %ylim([40 110])
+        %xlabel('0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23')
+    case 'ISO2'
+        maxTemp=max(max(iso2));
+        roundT=round(maxTemp);
+        handles.roundT=roundT;
+        handles.maxTemp=maxTemp;
+        striso2=mat2str(roundT);
+        handles.striso2=striso2;
+
+        lowTemp=min(iso2);
+        roundT=round(lowTemp);
+        handles.roundT=roundT;
+        handles.lowTemp=lowTemp;
+        striso2l=mat2str(roundT);
+        handles.striso2l=striso2l;
+        
+        textLabel = sprintf(striso2, striso2);
+        set(handles.text3, 'String', textLabel);
+        textLabel = sprintf(striso2l, striso2l);
+        set(handles.text4, 'String', textLabel);
+        
+
+        hold off
+        plot(handles.iso2,'-o')
+        hold on
+        plot(handles.iso2h,'-o')
+        legend('Temperature(F)','Humidity(%)')
+        %xticks([])
+        grid on
+         xticks([1 5 9 13 17 21 25 29 33 37 41 45 49 53 57 61 65 69 73 77 81 85 89 93 97])
+        xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','0'})
+        %ylim([40 110])
+        %xlabel('0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23')
+    case 'ISO3'
+        maxTemp=max(max(iso3));
+        roundT=round(maxTemp);
+        handles.roundT=roundT;
+        handles.maxTemp=maxTemp;
+        striso3=mat2str(roundT);
+        handles.striso3=striso3;
+
+        lowTemp=min(iso3);
+        roundT=round(lowTemp);
+        handles.roundT=roundT;
+        handles.lowTemp=lowTemp;
+        striso3l=mat2str(roundT);
+        handles.striso3l=striso3l;
+        
+        textLabel = sprintf(striso3, striso3);
+        set(handles.text3, 'String', textLabel);
+        textLabel = sprintf(striso3l, striso3l);
+        set(handles.text4, 'String', textLabel);
+
+        hold off
+        plot(handles.iso3)
+        hold on
+        plot(handles.iso3h)
+        legend('Temperature(F)','Humidity(%)')
+        %xticks([])
+        grid on
+         xticks([1 5 9 13 17 21 25 29 33 37 41 45 49 53 57 61 65 69 73 77 81 85 89 93 97])
+        xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','0'})
+        %ylim([40 110])
+        %xlabel('0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23')
+    case 'ISO4'
+        maxTemp=max(max(iso4));
+        roundT=round(maxTemp);
+        handles.roundT=roundT;
+        handles.maxTemp=maxTemp;
+        striso4=mat2str(roundT);
+        handles.striso4=striso4;
+        
+        lowTemp=min(iso4);
+        roundT=round(lowTemp);
+        handles.roundT=roundT;
+        handles.lowTemp=lowTemp;
+        striso4l=mat2str(roundT);
+        handles.striso4l=striso4l;
+
+        textLabel = sprintf(striso4, striso4);
+        set(handles.text3, 'String', textLabel);
+        textLabel = sprintf(striso4l, striso4l);
+        set(handles.text4, 'String', textLabel);
+
+        hold off
+        plot(handles.iso4)
+        hold on
+        plot(handles.iso4h)
+        legend('Temperature(F)','Humidity(%)')
+        %xticks([])
+        grid on
+         xticks([1 5 9 13 17 21 25 29 33 37 41 45 49 53 57 61 65 69 73 77 81 85 89 93 97])
+        xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','0'})
+        %ylim([40 110])
+        %xlabel('0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23')
+    case 'HH'
+        maxTemp=max(max(hh));
+        roundT=round(maxTemp);
+        handles.roundT=roundT;
+        handles.maxTemp=maxTemp;
+        strhh=mat2str(roundT);
+        handles.strhh=strhh;
+
+        lowTemp=min(hh);
+        roundT=round(lowTemp);
+        handles.roundT=roundT;
+        handles.lowTemp=lowTemp;
+        strhhl=mat2str(roundT);
+        handles.strhhl=strhhl;
+        
+        textLabel = sprintf(strhh, strhh);
+        set(handles.text3, 'String', textLabel);
+        textLabel = sprintf(strhhl, strhhl);
+        set(handles.text4, 'String', textLabel);
+        
+        hold off
+        plot(handles.hh)
+        hold on
+        plot(handles.hhh)
+        legend('Temperature(F)','Humidity(%)')
+        %xticks([])
+        grid on
+         xticks([1 5 9 13 17 21 25 29 33 37 41 45 49 53 57 61 65 69 73 77 81 85 89 93 97])
+        xticklabels({'0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','0'})
+        %ylim([40 110])
+        %xlabel('0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23')
+end
+
+guidata(hObject,handles)
+
+% --- Executes during object creation, after setting all properties.
+function popupmenu1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to popupmenu1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function highTemp_Callback(hObject, eventdata, handles)
+% hObject    handle to highTemp (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of highTemp as text
+%        str2double(get(hObject,'String')) returns contents of highTemp as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function highTemp_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to highTemp (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+
+
+
+
+
+function lowTemp_Callback(hObject, eventdata, handles)
+% hObject    handle to lowTemp (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of lowTemp as text
+%        str2double(get(hObject,'String')) returns contents of lowTemp as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function lowTemp_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to lowTemp (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on selection change in listbox2.
+function listbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to listbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns listbox2 contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from listbox2
+
+
+% --- Executes during object creation, after setting all properties.
+function listbox2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to listbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: listbox controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
