@@ -4,8 +4,7 @@ The team project consists of MATLAB, Processing, and Arduino interface. With the
 # Background:
 An Arduino Mega 2560 microcontroller is used for the project. Ten HTU21D-F
 temperature and humidity sensors are used to collect data. Ten OLED displays are used to display the data in each greenhouse. Twenty SparkFun Differential I2C Breakout boards and 2 SparkFun Qwiic Mux Breakout Boards are used to connect ten CAT5 cables of different length in order deploy the sensors in the different greenhouses. One FONA is used to send the SMS notifications. A Raspberry Pi 3 is used to display the text data with the help of the software Processing. An SD card and clock module are also connected to the Arduino to keep record of data collected. MATLAB is used to graphically display temperature and humidity data for a specific day chosen by the user as well as the high and low of that day.
-=======
-# greenhouseProject
+
 
 ![greenhouses](https://i.ibb.co/3WJp4j2/Screenshot-from-2019-07-08-19-21-33.png)
 
