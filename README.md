@@ -8,4 +8,18 @@ temperature and humidity sensors are used to collect data. Ten OLED displays are
 
 ![greenhouses](https://i.ibb.co/3WJp4j2/Screenshot-from-2019-07-08-19-21-33.png)
 
+# Matlab GUI Screenshots:
+
+## Initial GUI Screen:
+![s1](https://i.ibb.co/sCgMcXj/s1.png)
+
+## Select Greenhouse:
+![s2](https://i.ibb.co/Ybj1TbV/s2.png)
+
+## Data displayed for selected Greenhouse:
+![s3](https://i.ibb.co/0FmJX4m/s3.png)
+
+## Data displayed on monitor
+![data display on monitor](https://i.ibb.co/cL7Q4Zv/processing-display.png)
+
 
